@@ -1,5 +1,5 @@
 import json
-from os import scandir
+from os import scandir, system
 
 tmp = scandir('./records')
 
@@ -17,3 +17,4 @@ for i in tmp:
                         f'\n {str(results["fullDetectionReports"]["detectionReports"][-1]["vulnerability"])}')
         except Exception:
             pass
+system("echo consolidation report done, is not present all tests passed")

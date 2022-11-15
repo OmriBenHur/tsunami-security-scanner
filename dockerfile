@@ -4,3 +4,4 @@ COPY ./tsunami .
 RUN ["chmod", "+x", "commands.sh"]
 RUN ["bash", "-c", "./commands.sh"]
 ENTRYPOINT ["/bin/bash"]
+CMD ["./activate.sh"]

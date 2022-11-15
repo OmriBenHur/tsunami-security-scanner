@@ -1,9 +1,9 @@
 # provider conf, enter your access key and secret key here
 provider "aws" {
   region     = "us-west-2"
-  access_key = "ASIATTZPWNMGXPYVAASI"
-  secret_key = "KkMmri4A6eECtjHRbR+jVq88SpNKw7Gm8Fu3tgE6"
-  token = "FwoGZXIvYXdzEPD//////////wEaDApxWVMmJjn66njT2iLGATzFZ91gZd0FfVOwAnQLHJdbHhu01Kir8HrRXFVEqYBFx2cn0Of0uepuWkWcmB9QkM9Dzs4oTDL5YG/H/PtcL3vHFN1/n8oult5U7qz4olN8s4mGo8NN/DpSeCbTekof62Y6OMiM5u/g5+hixjqrKatPX+pEvEvgCz4ubeYxeMfpq4TSFT6yhERwnmZ0VgJIlt6ZQQfnMGOxvZeeT1ymMth8JPiemKacLXSlLti0Upn5S0c3TcSEP3UDB1wEocrSktfUVCT9WCihrcmbBjIto2XdiLstboGekcL9yhVsTb+Ym5EfMdYG0OCWoilhWTUqWjQR2gtzn8EzEyow"
+  access_key = ""
+  secret_key = ""
+  token = ""
 }
 
 # data obj to return the latest available version of amazon linux AMI

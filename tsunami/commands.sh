@@ -1,5 +1,7 @@
 #!/bin/bash
 mkdir records
+chmod 777 scan.sh
+chmod 777 activate.sh
 apt update -y
 apt install nmap -y
 apt install ncrack -y
