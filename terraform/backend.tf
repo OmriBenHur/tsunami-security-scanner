@@ -10,6 +10,4 @@ terraform {
 # provider conf, enter your access key and secret key here
 provider "aws" {
   region     = "us-west-2"
-  access_key = ""
-  secret_key = ""
 }
