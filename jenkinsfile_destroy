@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+    triggers {
+        cron('0 12,0 * * *')
+    }
+
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+    }
+
+    stages {
+        stage('clean workspace') {
+            steps {
+               cleanWs()
+            }
+        }
+
+        stage('checkout github') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/OmriBenHur/tsunami-security-scanner.git']]])
+            }
+        }
+
+        stage('terraform init') {
+            steps {
+                dir('terraform'){
+                    bat 'terraform init'
+                }
+            }
+        }
+
+        stage('terraform apply') {
+            steps {
+              dir('terraform'){
+                bat 'terraform destroy -auto-approve -no-color'
+              }
+            }
+        }
+    }
+}
