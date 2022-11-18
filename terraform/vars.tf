@@ -1,13 +1,7 @@
-# provider conf, enter your access key and secret key here
-provider "aws" {
-  region     = "us-west-2"
-  access_key = ""
-  secret_key = ""
-}
 
 variable "email_address" {
   description = "email address for sns subscription"
-  default     = ""
+  default     = "omribk2000@gmail.com"
 }
 
 # vpc CIDR range, this can be configured, subnets are created automatically
@@ -19,7 +13,7 @@ variable "vpc_cidr_def" {
 
 variable "key_name" {
   description = "ssh key name for ec2"
-  default     = ""
+  default     = "gloatkey"
 }
 
 # data obj to return the latest available version of amazon linux AMI
