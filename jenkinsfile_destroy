@@ -30,7 +30,7 @@ pipeline {
             }
         }
 
-        stage('terraform apply') {
+        stage('terraform destroy') {
             steps {
               dir('terraform'){
                 bat 'terraform destroy -auto-approve -no-color'
