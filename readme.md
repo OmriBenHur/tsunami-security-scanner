@@ -83,5 +83,8 @@ click save
 
 # project architecture:
 
-  ![Untitled Diagram-Page-1 drawio (1)](https://user-images.githubusercontent.com/110596448/202863266-1e0391d4-f91c-40f6-bd63-65edfe9988dd.png
+
+![architecture](https://user-images.githubusercontent.com/110596448/202863359-251f622a-5215-4346-86a1-a44dfb2db264.png)
+
+
 
