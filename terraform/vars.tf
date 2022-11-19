@@ -1,7 +1,7 @@
 # email adress to pass to the sns subscription
 variable "email_address" {
   description = "email address for sns subscription"
-  default     = "omribk2000@gmail.com"
+  default     = "omribhk2000@gmail.com"
 }
 
 # vpc CIDR range, this can be configured, subnets are created automatically
