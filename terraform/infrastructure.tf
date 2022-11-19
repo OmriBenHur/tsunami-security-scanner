@@ -8,7 +8,7 @@ resource "aws_vpc" "web_app_vpc" {
   }
 }
 
-# crating internet gateway for the vpc
+# creating internet gateway for the vpc
 resource "aws_internet_gateway" "web_app_igw" {
   vpc_id = aws_vpc.web_app_vpc.id
 }
