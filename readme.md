@@ -20,7 +20,7 @@
 <img width="546" alt="4" src="https://user-images.githubusercontent.com/110596448/202850069-bc69a95d-3546-4983-ac8b-3980effee5ca.PNG">
 
 2. next click on the created bucket, and under permission tab, edit the bucket policy and enter the following:
-
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -46,7 +46,8 @@
         }
     ]
 }
-  
+
+```
  
 click save
   
