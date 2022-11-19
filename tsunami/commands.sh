@@ -1,4 +1,5 @@
 #!/bin/bash
+# commands to run on the creation of the docker image( this is not required because the image is already built on hosted on my dockerhub account
 mkdir records
 chmod 777 scan.sh
 chmod 777 activate.sh

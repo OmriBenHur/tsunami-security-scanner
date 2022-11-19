@@ -1,3 +1,4 @@
+# scanner vpc
 resource "aws_vpc" "web_app_vpc" {
   cidr_block           = var.vpc_cidr_def
   enable_dns_hostnames = true
@@ -7,7 +8,7 @@ resource "aws_vpc" "web_app_vpc" {
   }
 }
 
-# crating internet gateway in the webapp
+# crating internet gateway for the vpc
 resource "aws_internet_gateway" "web_app_igw" {
   vpc_id = aws_vpc.web_app_vpc.id
 }
@@ -31,53 +32,4 @@ resource "aws_subnet" "public" {
   tags = {
     Name = "public-subnet"
   }
-}
-
-
-# creating 2 private subnets
-resource "aws_subnet" "private" {
-  count             = 2
-  vpc_id            = aws_vpc.web_app_vpc.id
-  cidr_block        = cidrsubnet(aws_vpc.web_app_vpc.cidr_block, 8, count.index)
-  availability_zone = data.aws_availability_zones.available_zones.names[count.index]
-  tags = {
-    Name = "private-subnet"
-  }
-
-}
-
-# creating two elastic ip's to use in NAT gateway to bridge connection to private subnet
-resource "aws_eip" "EIP" {
-  count      = 2
-  vpc        = true
-  depends_on = [aws_internet_gateway.web_app_igw]
-}
-
-#creating NAT gateway in public subnets and allocating elastic ips
-resource "aws_nat_gateway" "NAT_gateway" {
-  count         = 2
-  subnet_id     = element(aws_subnet.public.*.id, count.index)
-  allocation_id = element(aws_eip.EIP.*.id, count.index)
-  tags = {
-    Name = "NAT Gateway"
-  }
-}
-
-# creating two route tables for each private subnet to route comm to the NAT gateway
-resource "aws_route_table" "private" {
-  count  = 2
-  vpc_id = aws_vpc.web_app_vpc.id
-
-  route {
-    cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = element(aws_nat_gateway.NAT_gateway.*.id, count.index)
-  }
-}
-
-# associating private route tables with private subnets
-resource "aws_route_table_association" "private" {
-  count          = 2
-  subnet_id      = element(aws_subnet.private.*.id, count.index)
-  route_table_id = element(aws_route_table.private.*.id, count.index)
-
 }

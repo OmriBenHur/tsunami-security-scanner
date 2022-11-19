@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# changing dir to the dir where the tsunami scaner is present, and running the scanner for each passed ip address
 cd /root/tsunami
 for i in $ip;
 do

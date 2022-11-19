@@ -1,3 +1,5 @@
+# tsunami scanner instance security group, allows ssh from everywhere. change the cidr block to your public ip to allow a more secure debugging env
+
 resource "aws_security_group" "tsunami_sg" {
   name        = "tsunami_sg"
   description = "Allow inbound traffic"
@@ -24,6 +26,7 @@ resource "aws_security_group" "tsunami_sg" {
   }
 }
 
+# jupyter notebook security group allows traffic to the instance from everywhere on port 8888 (jupyter container's default port) and port 22 for debugging
 resource "aws_security_group" "vuln_sg" {
   name        = "vulnerability_sg"
   description = "Allow inbound traffic"
@@ -70,8 +73,8 @@ data "aws_iam_policy_document" "instance-assume-role-policy" {
   }
 }
 
-# iam role for ec2 to allow the secrets manager : get secret value operation
-# this is required for the web app container to function
+# iam role for ec2 to allow upload of joined report to s3 bucket, and scanning for ec2 public ip addresses to scan
+# this is required for the scanner container to function
 resource "aws_iam_role" "ec2-s3" {
   name               = "ec2_s3"
   assume_role_policy = data.aws_iam_policy_document.instance-assume-role-policy.json
@@ -96,24 +99,8 @@ resource "aws_iam_role" "ec2-s3" {
   }
 }
 
-# creating iam instance profile from iam role to use in the launch template
-# to be used with ASG. (regular roles cannot attach to launch templates or instances)
+# creating iam instance profile from iam role to use in the creation of the scanner instance
 resource "aws_iam_instance_profile" "ec2_role_profile" {
   name = "ec2_s3-upload"
   role = aws_iam_role.ec2-s3.name
 }
-
-#
-#resource "tls_private_key" "ec2_private_key" {
-#  algorithm = "RSA"
-#  rsa_bits  = 4096
-#
-#  provisioner "local-exec" {
-#    command = "echo ${tls_private_key.ec2_private_key.private_key_pem} > ${var.key_name}.pem"
-#  }
-#}
-#
-#resource "aws_key_pair" "ec2_ssh_key" {
-#  public_key = tls_private_key.ec2_private_key.public_key_openssh
-#  key_name   = var.key_name
-#}

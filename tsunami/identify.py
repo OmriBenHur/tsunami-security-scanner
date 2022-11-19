@@ -1,8 +1,8 @@
 import json
 from os import scandir, system
-
+# scannig records directory where all tsunami reports are found
 tmp = scandir('./records')
-
+# identifying any vulnerabilities and writing the vulnerability, the date and time and recommended action to a joined report
 for i in tmp:
     with open(i) as report:
         results = json.load(report)

@@ -1,3 +1,5 @@
+# tsunami scanner instance, type t3.med is required.
+# you can remove "depends on" it's for demonstration purposes only
 resource "aws_instance" "tsunami" {
   ami                  = data.aws_ami.amazon-linux-2.id
   instance_type        = "t3.medium"
@@ -12,6 +14,9 @@ resource "aws_instance" "tsunami" {
     Name = "tsunami scanner"
   }
 }
+
+# vulnerable jupyter notebook instances to be scanned and reported via the scanner
+# this is for demonstaration purposes only, it can be removed if you already have something to scan.
 
 resource "aws_instance" "vuln" {
   count           = 2
