@@ -6,6 +6,7 @@
 
 ### For Your Information:
 #### the scanner's docker image compressed size is 871.94 MB, this is due to the extensible plugin system the scanner relies on, the scanner also requires computing power, (t2.micro instaces crashes due to memory cap), the script uses a t3.med instance but you are more then welcome to experiment with instance types
+#### make sure to empty the report bucket before jenkins tries to destroy the infrastructure!
 
 ## pre-req:
 
