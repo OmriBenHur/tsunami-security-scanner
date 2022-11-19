@@ -1,12 +1,15 @@
-# tusnami network security scanner, deployed on AWS, with jenkins "cron'ed" piplines
+# tusnami network security scanner, deployed on AWS, with jenkins "cron'ed" pipelines
 
-## this project uses google's tsunami network scanner with aws and jenkins to deploy, scan, identify and notify of any found vulnerabilities by the scanner.
+## This project uses google's Tsunami network scanner on aws cloud, leveraging jenkins to deploy, scan, identify and notify of any vulnerabilities found by the scanner.
 
-#### by default, the scanner scans any vulnerabilities in any available instance's public ip's in the region. this can be changes in the tsunami_UD file in the terraform dir.for example, changing the aws ec2 describe-instances command to query "[PrivateIpAddress]" instead of "[PublicIpAddress]", or both!
+#### By default, the scanner scans for vulnerabilities in any instance with a public IP in the region.
+#### It is possible to scan the private IP addresses instead or in addition to the public IP addresses by simply updating the tsunami_UD file in the terraform dir.
+#### For example, changing the aws ec2 describe-instances command to query "[PrivateIpAddress]" instead of "[PublicIpAddress]", or both!"
 
 ### For Your Information:
-#### the scanner's docker image compressed size is 871.94 MB, this is due to the extensible plugin system the scanner relies on, the scanner also requires computing power, (t2.micro instaces crashes due to memory cap), the script uses a t3.med instance but you are more then welcome to experiment with instance types
-#### make sure to empty the report bucket before jenkins tries to destroy the infrastructure!
+#### The compressed size of he scanner's docker image is 871.94 MB. This is due to the extensible plugin system the scanner relies on. The scanner also requires adequate computing power, (t2.micro instances crash due to memory cap). The script uses a t3.med instance but you are more than welcome to experiment with other instance types.
+
+#### make sure to empty the report bucket before jenkins tries to destroy the infrastructure! terraform cannot destroy a non empty bucket.
 
 ## pre-req:
 
@@ -56,6 +59,7 @@
 }
 
 ```
+ the policy above allows the iam entity to list, put object, get object and delete object on the bucket. this is required for the bucket to be used as a backend by terraform.
  
 click save
   
@@ -64,7 +68,7 @@ click save
   <img width="447" alt="terraform" src="https://user-images.githubusercontent.com/110596448/202850388-362f26ff-fcb3-4c47-8f11-d6ef31b8c1d2.PNG">
   
   
-## step3: configure jenkins machine with aws crdentials and pipline.
+## configure jenkins machine with aws credentials and pipeline.
  
  ### login to jeknins, under manage jenkins, manage credentials, system store, on the top right click add credentials and configure the following.
   
@@ -77,15 +81,15 @@ click save
 <img width="715" alt="jenkins4" src="https://user-images.githubusercontent.com/110596448/202850921-bcd7fdf6-aacd-482b-bbe5-540a2a7599c0.PNG">
 
 
-### under dashboard, click create new item, and create a pipline job, copy and paste the file "jenkinsfile_apply" into the text box in the pipline configuration and click save
+###  under dashboard, click create new item, and create a pipeline job, copy and paste the file "jenkinsfile_apply" into the text box in the pipeline configuration and click save
 
-### repete previous step for the file "jenkinsfile_destroy"
+### repeat previous step for the "jenkinsfile_destroy" file
 
 
 # project architecture:
 
 
-![architecture](https://user-images.githubusercontent.com/110596448/202863359-251f622a-5215-4346-86a1-a44dfb2db264.png)
+![Untitled Diagram-Page-1 (1)](https://user-images.githubusercontent.com/110596448/202872040-63631894-0c29-436b-a0a2-b8900d29b87a.jpg)
 
 
 
