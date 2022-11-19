@@ -85,6 +85,11 @@ click save
 
 ### repeat previous step for the "jenkinsfile_destroy" file
 
+### example report:
+
+<img width="960" alt="Capture" src="https://user-images.githubusercontent.com/110596448/202872801-4bb9ab35-b6b3-478f-aed5-3d7ae3f9459b.PNG">
+
+
 
 # project architecture:
 
