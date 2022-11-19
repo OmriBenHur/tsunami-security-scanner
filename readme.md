@@ -58,7 +58,7 @@
  
 click save
   
- ## step 2: configure terraform block under backend.tf file with the correspong values you have created earlier
+ ## step 2: configure terraform block under backend.tf file with the corresponding values you have created earlier
    
   <img width="447" alt="terraform" src="https://user-images.githubusercontent.com/110596448/202850388-362f26ff-fcb3-4c47-8f11-d6ef31b8c1d2.PNG">
   
