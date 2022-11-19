@@ -80,4 +80,8 @@ click save
 
 ### repete previous step for the file "jenkinsfile_destroy"
 
-  
+
+# project architecture:
+
+  ![Untitled Diagram-Page-1 drawio (1)](https://user-images.githubusercontent.com/110596448/202863266-1e0391d4-f91c-40f6-bd63-65edfe9988dd.png
+
