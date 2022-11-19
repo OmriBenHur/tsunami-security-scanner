@@ -1,5 +1,12 @@
 # tusnami network security scanner, deployed on AWS, with jenkins "cron'ed" piplines
 
+## this project uses google's tsunami network scanner with aws and jenkins to deploy, scan, identify and notify of any found vulnerabilities by the scanner.
+
+#### by default, the scanner scans any vulnerabilities in any available instance's public ip's in the region. this can be changes in the tsunami_UD file in the terraform dir.for example, changing the aws ec2 describe-instances command to query "[PrivateIpAddress]" instead of "[PublicIpAddress]", or both!
+
+### For Your Information:
+#### the scanner's docker image compressed size is 871.94 MB, this is due to the extensible plugin system the scanner relies on, the scanner also requires computing power, (t2.micro instaces crashes due to memory cap), the script uses a t3.med instance but you are more then welcome to experiment with instance types
+
 ## pre-req:
 
 1. working aws account with access key
@@ -56,7 +63,7 @@ click save
   <img width="447" alt="terraform" src="https://user-images.githubusercontent.com/110596448/202850388-362f26ff-fcb3-4c47-8f11-d6ef31b8c1d2.PNG">
   
   
-## step3: configure jenkins machine with aws crdentials.
+## step3: configure jenkins machine with aws crdentials and pipline.
  
  ### login to jeknins, under manage jenkins, manage credentials, system store, on the top right click add credentials and configure the following.
   
@@ -68,5 +75,9 @@ click save
 
 <img width="715" alt="jenkins4" src="https://user-images.githubusercontent.com/110596448/202850921-bcd7fdf6-aacd-482b-bbe5-540a2a7599c0.PNG">
 
+
+### under dashboard, click create new item, and create a pipline job, copy and paste the file "jenkinsfile_apply" into the text box in the pipline configuration and click save
+
+### repete previous step for the file "jenkinsfile_destroy"
 
   
